@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Book Finder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="searchChanged($event)"></ion-searchbar>
+
+  <ion-item>
+    <ion-label>Select Print Type</ion-label>
+    <ion-select [(ngModel)]="type" (ionChange)="searchChanged($event)">
+      <ion-select-option value="all">All</ion-select-option>
+      <ion-select-option value="books">Books</ion-select-option>
+      <ion-select-option value="magazines">Magazines</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Select Book Type</ion-label>
+    <ion-select [(ngModel)]="filter" (ionChange)="searchChanged($event)">
+      <ion-select-option value="none">None</ion-select-option>
+      <ion-select-option value="ebooks">Ebooks</ion-select-option>
+      <ion-select-option value="free-ebooks"> Free Ebook</ion-select-option>
+      <ion-select-option value="full">Full</ion-select-option>
+      <ion-select-option value="paid-ebooks">Paid Ebooks</ion-select-option>
+      <ion-select-option value="partial">Partial Ebooks</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+    <ion-item button *ngFor="let book of books" [routerLink]="['/', 'books', book.id]">
+      <ion-avatar slot="start">
+        <img [src]="book.image" *ngIf="book.image != 'N/A'">
+      </ion-avatar>
+
+      <ion-label text-wrap>
+        <h3>{{ book.title }}</h3>
+        {{ book.publishedDate }}
+      </ion-label>
+
+      <ion-label text-wrap slot="end">{{book.printType}}</ion-label>
+
+    </ion-item>
+
+  </ion-list>
+
+</ion-content>

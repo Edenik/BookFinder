@@ -1,0 +1,7 @@
+{
+  "name": "BookFinder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
